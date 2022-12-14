@@ -1,7 +1,10 @@
 .sidebar {
     flex:0.3; 
+    width: 250px;
+    height: 100vh;
     max-width: 300px;
     padding-right: 20px;
+    border-right: 1px solid whitesmoke;
 }
 
 .sidebar__compose {
