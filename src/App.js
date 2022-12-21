@@ -1,14 +1,18 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { useDispatch } from "react-redux"
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import EmailList from './components/EmailList';
 import Mail from './components/Mail';
+import SendMail from './components/SendMail';
 
 import './App.css';
 
 
 function App() {
+  // const dispatch = useDispatch(); 
+
   return (
     <BrowserRouter>
 
@@ -29,8 +33,9 @@ function App() {
                 routes for. */}
               {/* <Route path="*" element={<NoMatch />} /> */}
           </Routes>
-
         </div>
+
+        <SendMail />
       </div>
     </BrowserRouter>
   );

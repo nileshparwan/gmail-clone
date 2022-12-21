@@ -6,3 +6,11 @@
   display: flex;
   height: 100vh; 
 }
+
+.app__sidebar {
+  flex: 0.3;
+  display: flex;
+  min-width: 200px;
+  max-width: 300px;
+  border-right: 1px solid whitesmoke;
+}
