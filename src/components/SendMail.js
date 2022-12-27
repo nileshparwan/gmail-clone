@@ -1,10 +1,14 @@
 import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { closeSendMessage } from '../features/mailSlice';
 import './SendMail.css';
 
 const SendMail = () => {
+  const dispatch = useDispatch();
+
   const { register, formState: { errors }, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
@@ -16,7 +20,9 @@ const SendMail = () => {
       <div className="sendMail__header">
         <h3>New Message</h3>
 
-        <CloseIcon className='sendMail__close' />
+        <IconButton onClick={() => dispatch(closeSendMessage())}>
+          <CloseIcon className='sendMail__close' />
+        </IconButton>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -24,7 +30,7 @@ const SendMail = () => {
           id="to"
           name="to"
           placeholder="To"
-          type="text"
+          type="email"
           {...register("to", { required: true })}
           aria-invalid={errors.to ? "true" : "false"}
         />

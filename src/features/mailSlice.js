@@ -4,7 +4,7 @@ export const mailSlice = createSlice({
     name: 'mail',
     initialState: {
         value:"",
-        sendMessageIsOpen: true
+        sendMessageIsOpen: false
     },
     reducers: {
         openSendMessage: state => {
