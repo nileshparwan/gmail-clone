@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Checkbox, IconButton } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import RedoIcon from '@mui/icons-material/Redo';
@@ -10,12 +10,31 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import InboxIcon from '@mui/icons-material/Inbox';
 import PeopleIcon from '@mui/icons-material/People';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-
-import Section from '../components/Section';
-import './EmailList.css';
 import EmailRow from './EmailRow';
+import Section from '../components/Section';
+import { db } from '../features/firebase/firebase';
+import './EmailList.css';
 
 const EmailList = () => {
+    const [emails, setEmails] = useState([]);
+
+    useEffect(() => {
+
+        // web: version 8
+        db
+            .collection("emails")
+            .orderBy("timeStamp", "desc")
+            .onSnapshot((snapshot) => {
+                setEmails(
+                    snapshot.docs.map(doc => ({
+                        id: doc.id,
+                        data: doc.data()
+                    }))
+                );
+            });
+
+    }, []);
+
     return (
         <div className='emailList'>
             <div className="emailList__settings">
@@ -61,19 +80,55 @@ const EmailList = () => {
             </div>
 
             <div className="emailList__list">
-                <EmailRow
-                    title="Twitch"
-                    subject="Hey fellow streamer!!!"
-                    description="This is a test"
-                    time="10pm"
-                />
+                {
+                    emails.map(({ id, data: { to, subject, message, timeStamp } }) => (
+                        <EmailRow
+                            id={id}
+                            key={id}
+                            title={to}
+                            subject={subject}
+                            description={message}
+                            time={new Date(timeStamp?.seconds * 1000).toUTCString()}
+                        />
+                    ))
+                }
 
-                <EmailRow
-                    title="Twitch"
-                    subject="Hey fellow streamer!!!"
-                    description="This is a test"
-                    time="10pm"
-                />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
             </div>
         </div>
     );

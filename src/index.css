@@ -1,10 +1,11 @@
 * {
   margin: 0;
+  overflow: hidden;
 }
 
-body {
+/* body {
   overflow-y: hidden;
-}
+} */
 
 body {
   margin: 0;

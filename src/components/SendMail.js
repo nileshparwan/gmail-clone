@@ -1,18 +1,33 @@
 import React from 'react';
+// import { collection, addDoc } from "firebase/firestore";
 import CloseIcon from '@mui/icons-material/Close';
 import { Button, IconButton } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { closeSendMessage } from '../features/mailSlice';
+import { db, Timestamp } from '../features/firebase/firebase';
 import './SendMail.css';
 
 const SendMail = () => {
   const dispatch = useDispatch();
-
   const { register, formState: { errors }, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = (formData) => {
+
+    // web version 8
+    db.collection("emails").add({
+      to: formData.to,
+      subject: formData.subject,
+      message: formData.message,
+      timeStamp: Timestamp,
+    }).then((docRef) => {
+      console.log("Document written with ID: ", docRef.id);
+    }).catch((error) => {
+      console.error("Error adding document: ", error);
+    });
+
+    // close form
+    dispatch(closeSendMessage());
   };
 
   return (

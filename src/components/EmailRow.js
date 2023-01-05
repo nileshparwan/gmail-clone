@@ -5,6 +5,8 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import LabelImportantOutlinedIcon from '@mui/icons-material/LabelImportantOutlined';
 
 import './EmailRow.css';
+import { useDispatch } from 'react-redux';
+import { selectMail } from '../features/mailSlice';
 
 const EmailRow = ({
     id,
@@ -14,9 +16,32 @@ const EmailRow = ({
     description,
 }) => {
     const history = useNavigate();
+    const dispatch = useDispatch(); 
+
+    const openMail = () => {
+
+        // {
+        //     id,
+        //     time,
+        //     title,
+        //     subject,
+        //     description,
+        // }
+        // above is going to be the selected mail inside the selectMail function
+        dispatch(
+            selectMail({
+                id,
+                time,
+                title,
+                subject,
+                description,
+            })
+        )
+        history('/mail')
+    }
 
     return (
-        <div onClick={() => history('/mail')} className='emailRow'>
+        <div onClick={openMail} className='emailRow'>
             <div className="emailRow__options">
                 <Checkbox />
 
