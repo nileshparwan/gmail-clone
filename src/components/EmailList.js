@@ -121,7 +121,7 @@ const EmailList = () => {
                             title={to}
                             subject={subject}
                             description={message}
-                            time={fromNow(timeStamp.seconds)}
+                            time={fromNow(timeStamp?.seconds)}
                         />
                     ))
                 }
