@@ -35,6 +35,39 @@ const EmailList = () => {
 
     }, []);
 
+    const fromNow = (time) => {
+        const date = new Date();
+        const timestamp = date.getTime();
+        const seconds = Math.floor(timestamp / 1000);
+
+        const oldTime = Math.floor(new Date(time).getTime()/1000);
+        const oldTimestamp = seconds - oldTime; 
+        const difference = seconds - oldTimestamp;
+
+        let output = ``;
+        if (difference < 60) {
+            // Less than a minute has passed:
+            output = `${difference} seconds ago`;
+        } else if (difference < 3600) {
+            // Less than an hour has passed:
+            output = `${Math.floor(difference / 60)} minutes ago`;
+        } else if (difference < 86400) {
+            // Less than a day has passed:
+            output = `${Math.floor(difference / 3600)} hours ago`;
+        } else if (difference < 2620800) {
+            // Less than a month has passed:
+            output = `${Math.floor(difference / 86400)} days ago`;
+        } else if (difference < 31449600) {
+            // Less than a year has passed:
+            output = `${Math.floor(difference / 2620800)} months ago`;
+        } else {
+            // More than a year has passed:
+            output = `${Math.floor(difference / 31449600)} years ago`;
+        }
+
+        return output;
+    }
+
     return (
         <div className='emailList'>
             <div className="emailList__settings">
@@ -88,47 +121,47 @@ const EmailList = () => {
                             title={to}
                             subject={subject}
                             description={message}
-                            time={new Date(timeStamp?.seconds * 1000).toUTCString()}
+                            time={fromNow(timeStamp.seconds)}
                         />
                     ))
                 }
 
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
-                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10pm"} />
+                {/* <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} />
+                <EmailRow id={1} key={1} title={"test1"} subject={"test2"} description={"testing"} time={"10"} /> */}
             </div>
         </div>
     );
