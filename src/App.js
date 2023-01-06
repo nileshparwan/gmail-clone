@@ -6,38 +6,49 @@ import Sidebar from './components/Sidebar';
 import EmailList from './components/EmailList';
 import Mail from './components/Mail';
 import SendMail from './components/SendMail';
-import {selectSendMessageIsOpen} from '../src/features/mailSlice';
+import { selectSendMessageIsOpen } from '../src/features/mailSlice';
+import Login from './components/Login';
 
 import './App.css';
+import { selectUser } from './features/userSlice';
 
 
 function App() {
   // import from export const selectSendMessageIsOpen = state
-  const sendMessageIsOpen = useSelector(selectSendMessageIsOpen); 
+  const sendMessageIsOpen = useSelector(selectSendMessageIsOpen);
+  const user = useSelector(selectUser);
+
 
   return (
     <BrowserRouter>
-
       <div className="App">
-        <Header />
+        {
+          !user ? (
+            <Login />
+          ) : (
+            <>
+              <Header />
 
-        <div className='app__body'>
-          <aside className='app__sidebar'>
-            <Sidebar />
-          </aside>
+              <div className='app__body'>
+                <aside className='app__sidebar'>
+                  <Sidebar />
+                </aside>
 
-          <Routes>
-            <Route path="/" element={<EmailList />} />
-              <Route path="mail" element={<Mail />} />
+                <Routes>
+                  <Route path="/" element={<EmailList />} />
+                  <Route path="mail" element={<Mail />} />
 
-              {/* Using path="*"" means "match anything", so this route
-                acts like a catch-all for URLs that we don't have explicit
-                routes for. */}
-              {/* <Route path="*" element={<NoMatch />} /> */}
-          </Routes>
-        </div>
+                  {/* Using path="*"" means "match anything", so this route
+        acts like a catch-all for URLs that we don't have explicit
+        routes for. */}
+                  {/* <Route path="*" element={<NoMatch />} /> */}
+                </Routes>
+              </div>
 
-        {sendMessageIsOpen && <SendMail />}
+              {sendMessageIsOpen && <SendMail />}
+            </>
+          )
+        }
       </div>
     </BrowserRouter>
   );
